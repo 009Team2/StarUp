@@ -1,23 +1,11 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登入</title>
-<style type="text/css">
-#main {
-	position:relative;
-	top: 50px;
-    width:100%;
-    text-align:center;
-}
-#content {
-  width: 500px ;
-  margin-left: auto ;
-  margin-right: auto ;
-}
-</style>
 <script type="text/javascript">
 //由<body>的onLoad事件處理函數觸發此函數
 function setFocusToUserId(){   
@@ -25,7 +13,7 @@ function setFocusToUserId(){
 }
 </script>
 </head>
-<body onLoad="setFocusToUserId()" style="background:#EBFFEB;">
+<body onLoad="setFocusToUserId()">
 <!-- 下列敘述設定變數funcName的值為LOG，top.jsp 會用到此變數 -->
 <c:set var="funcName" value="LOG" scope="session"/>
 <c:set var="msg" value="登入" />
@@ -37,8 +25,7 @@ function setFocusToUserId(){
 
 <Form action="<c:url value='login.do' />" method="POST" name="loginForm">
 <div id='content'>
-    <Table  width='500px' style="border-width:2; background:#E0E0E0; 
-                        border-style:inset; border-color:#EF02A4;">
+    <Table>
          <TR>
              <TH width="180">&nbsp;</TH>
              <TH width="180">&nbsp;</TH>

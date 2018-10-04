@@ -83,7 +83,7 @@ public class LoginServlet extends HttpServlet {
 		// ********************************************
 		// 如果 errorMsgMap 不是空的，表示有錯誤，交棒給login.jsp
 		if (!errorMsgMap.isEmpty()) {
-			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			rd.forward(request, response);
 			return;
 		}
@@ -111,10 +111,7 @@ public class LoginServlet extends HttpServlet {
 		// 5.依照 Business Logic 運算結果來挑選適當的畫面
 		// 如果 errorMsgMap 是空的，表示沒有任何錯誤，交棒給下一棒
 		if (errorMsgMap.isEmpty()) {
-			out = response.getWriter();
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Login success');");
-			out.println("</script>");
+		
 			// 此時不要用下面兩個敘述，因為瀏覽器的網址列不會改變
 			// RequestDispatcher rd = request.getRequestDispatcher("...");
 			// rd.forward(request, response);
@@ -128,9 +125,14 @@ public class LoginServlet extends HttpServlet {
 			}
 		} else {
 			// 如果errorMsgMap不是空的，表示有錯誤，交棒給login.jsp
-			out = response.getWriter();
-			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			response.setCharacterEncoding("UTF-8");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			rd.forward(request, response);
+			out = response.getWriter();
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('User or password incorrect');");
+			out.println("location='index.jsp';");
+			out.println("</script>");
 			return;
 		}
 	}
