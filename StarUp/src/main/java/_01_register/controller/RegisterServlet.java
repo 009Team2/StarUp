@@ -196,7 +196,7 @@ public class RegisterServlet extends HttpServlet {
 					introText.delete();// call file method delete() to delete introduction in text file
 					if (n == 1) {
 						oKMsg.put("InsertOK", "<Font color='red'>輸入OK</Font>");
-						response.sendRedirect("RegisterSuccess.jsp");
+						response.sendRedirect("_01_register/RegisterSuccess.jsp");
 						return;
 					} else {
 						errorMsg.put("errorIDDup", "新增此筆資料有誤(RegisterServlet)");

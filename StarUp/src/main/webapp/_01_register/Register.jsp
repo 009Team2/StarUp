@@ -5,7 +5,7 @@
  <jsp:include page="/fragment/header.jsp" />
  <c:set var="funcName" value="REG" scope="session" />
  <div class="container">
-      <form ENCTYPE="multipart/form-data" method="POST" action="<c:url value='register.do' />"  id="register.do">
+      <form ENCTYPE="multipart/form-data" method="POST" action="<c:url value='/register.do' />"  id="register.do">
     <fieldset>
         <legend>會員註冊</legend> <p>${MsgMap.InsertNG}${MsgMap.errorSaveData}</p>
     	<section class="container col-sm-6">
