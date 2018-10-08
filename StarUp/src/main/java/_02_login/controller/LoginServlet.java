@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -14,9 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import _00_init.util.GlobalService;
-import _01_register.dao.impl.UserHibernateDaoImpl;
+import _01_register.dao.impl.UserDaoImpl;
 import _01_register.model.UserBean;
+import _01_register.service.UserService;
+import _02_login.service.LoginService;
 
 
 @WebServlet("/login.do")
@@ -89,14 +95,19 @@ public class LoginServlet extends HttpServlet {
 		}
 		// 進行 Business Logic 運算
 		// 將LoginServiceImpl類別new為物件，存放物件參考的變數為 login
-		UserHibernateDaoImpl login = new UserHibernateDaoImpl();
-
+		
+		//UserDaoImpl login = new UserDaoImpl();
+		/*改成spring-web版*/
+		ServletContext sc = getServletContext();
+		WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(sc);
+		LoginService loginService = ctx.getBean(LoginService.class);
+		/**/
 		// 將密碼加密兩次，以便與存放在表格內的密碼比對
 		password = GlobalService.getMD5Endocing(GlobalService.encryptString(password));
 		UserBean mb = null;
 		try {
-			// 呼叫 loginService物件的 checkIDPassword()，傳入userid與password兩個參數
-			mb = login.checkIDPassword(account, password);
+			// 呼叫 loginService物件的 checkIDPassword()，傳入account與password兩個參數
+			mb = loginService.checkIDPassword(account, password);
 			if (mb != null) {
 				// OK, 登入成功, 將mb物件放入Session範圍內，識別字串為"LoginOK"
 				session.setAttribute("LoginOK", mb);

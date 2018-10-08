@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -23,12 +24,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import _00_init.util.GlobalService;
 import _00_init.util.SystemUtils2018;
 import _00_init.util.UserFileIO;
 import _01_register.model.UserBean;
 import _01_register.service.UserService;
-import _01_register.service.impl.UserServiceImpl;
 
 
 
@@ -171,7 +174,12 @@ public class RegisterServlet extends HttpServlet {
 				return;
 			}
 			try {
-				UserService service = new UserServiceImpl();
+				// UserService service = new UserServiceImpl();
+				/*改spring啦*/
+				ServletContext sc = getServletContext();
+				WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(sc);
+				UserService service = ctx.getBean(UserService.class);
+				/**/
 				if (service.idExists(account)) {
 					errorMsg.put("errorIDDup", "此帳號已存在，請換新帳號");
 				} else if(service.nicknameExists(nickname)) {
