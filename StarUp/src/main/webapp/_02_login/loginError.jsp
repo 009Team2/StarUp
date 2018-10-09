@@ -20,7 +20,12 @@
         </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-bottom:40px;">Login</button>
-      
+      <button type="button" class="btn btn-outline-info btn-sm"
+							onclick="document.getElementById('inputAccount').value='annieLee@gmail.com'"
+						><i class="fas fa-user-circle"></i></button>
+						<button type="button" class="btn btn-outline-info btn-sm"
+							onclick="document.getElementById('inputPassword').value='Do!ng123'"
+						><i class="fas fa-unlock-alt"></i></button>
     </form>
    </div>
 

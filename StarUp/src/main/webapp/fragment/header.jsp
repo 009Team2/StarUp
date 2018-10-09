@@ -19,6 +19,7 @@
 	rel="stylesheet">
 <link href="../css/index_main.css" rel="stylesheet">
 <link href="./css/index_main.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 </head>
  
 <body>
@@ -116,16 +117,16 @@
 				
 				<!-- Modal Content -->
 				<form class="modal-content animate border-warning" action="<c:url value='/login.do' />" method="POST"
-					style="width: 300px; height: 300px; margin: 100px auto; padding: 30px; text-align: center; background-color:rgba(255, 255, 255,0.9);">
+					style="width: 300px; height: 350px; margin: 100px auto; padding: 30px; text-align: center; background-color:rgba(255, 255, 255,0.9);">
 					<div class="container">
 					 <h1 class="h3 mb-3 font-weight-normal">Please Login</h1>
 						<label for="account"  style="margin: 15px;"><b>帳號</b></label>
 						 <input
-							type="text" placeholder="Enter Username" name="account"
+							type="text" id="account" placeholder="Enter Username" name="account"
 							value="${requestScope.user}" required autofocus>  <br>
 						<label for="password" style="margin: 15px;"><b>密碼</b></label>
 						 <input
-							type="password" placeholder="Enter Password" name="password"
+							type="password" id="pswd" placeholder="Enter Password" name="password"
 							value="${requestScope.password}" required> &nbsp;
 						<br>
 						<br>
@@ -139,6 +140,13 @@
 						<button type="button"
 							onclick="document.getElementById('id01').style.display='none'"
 							class="cancelbtn btn btn-outline-secondary">Cancel</button>
+						<br>
+						<button type="button" class="btn btn-outline-info btn-sm"
+							onclick="document.getElementById('account').value='annieLee@gmail.com'"
+						><i class="fas fa-user-circle"></i></button>
+						<button type="button" class="btn btn-outline-info btn-sm"
+							onclick="document.getElementById('pswd').value='Do!ng123'"
+						><i class="fas fa-unlock-alt"></i></button>
 					</div>
 				</form>
 			</div>

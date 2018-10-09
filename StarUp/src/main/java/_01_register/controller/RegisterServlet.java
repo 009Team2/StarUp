@@ -183,7 +183,7 @@ public class RegisterServlet extends HttpServlet {
 				if (service.idExists(account)) {
 					errorMsg.put("errorIDDup", "此帳號已存在，請換新帳號");
 				} else if(service.nicknameExists(nickname)) {
-					errorMsg.put("errorNicknameDup", "此暱稱已存在，請換新暱稱");
+					errorMsg.put(" ", "此暱稱已存在，請換新暱稱");
 				} else {
 					password = GlobalService.getMD5Endocing(
 					GlobalService.encryptString(password));
