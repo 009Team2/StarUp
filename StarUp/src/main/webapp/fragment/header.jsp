@@ -115,7 +115,7 @@
 							class="close" title="Close Modal">&times;</span>
 				
 				<!-- Modal Content -->
-				<form class="modal-content animate border-warning" action="<c:url value='login.do' />" method="POST"
+				<form class="modal-content animate border-warning" action="<c:url value='/login.do' />" method="POST"
 					style="width: 300px; height: 300px; margin: 100px auto; padding: 30px; text-align: center; background-color:rgba(255, 255, 255,0.9);">
 					<div class="container">
 					 <h1 class="h3 mb-3 font-weight-normal">Please Login</h1>
