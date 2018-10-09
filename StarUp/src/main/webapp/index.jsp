@@ -15,10 +15,10 @@
 		<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 		<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 	</ol>
-	<div class="carousel-inner" style="width:100%; height:500px; overflow:hidden;">
-		<div class="carousel-item active" style="overflow:hidden;">
+	<div class="carousel-inner" >
+		<div class="carousel-item active" style="width:100%; height:600px; overflow:hidden;">
 			<img class="d-block w-100" src="images/598d4e5d7024d.png" alt="First slide" >
-			<div class="container" style="position:absolute; top:450px; left:90px;">
+			<div class="container" style="display:flex; justify-content:center">
 	            <div class="carousel-caption">
 		              <h1 style="text-shadow: 0px 0px 5px #f4dc42;">STAR UP !</h1>
 		              <p style="font-family:'Josefin Sans', sans-serif; font-size:26px; text-shadow: 0px 0px 5px #f4dc42;">
@@ -26,9 +26,9 @@
 	            </div>
           </div>
 		</div>
-		<div class="carousel-item">
+		<div class="carousel-item" style="width:100%; height:600px; overflow:hidden;">
 			<img class="d-block w-100" src="images/5b33a326571eb.jpg" alt="Second slide">
-			<div class="container" style="position:absolute; top:500px; left:90px;">
+			<div class="container" style="display:flex; justify-content:center">
 	            <div class="carousel-caption">
 		              <h1 style="text-shadow: 0px 0px 5px #f4dc42;">STAR UP !</h1>
 		              <p style="font-family:'Josefin Sans', sans-serif; font-size:26px; text-shadow: 0px 0px 5px #f4dc42;">
@@ -36,9 +36,9 @@
 	            </div>
           </div>
 		</div>
-		<div class="carousel-item">
+		<div class="carousel-item" style="width:100%; height:600px; overflow:hidden;">
 			<img class="d-block w-100" src="images/5b44a3ac357d3.jpg" alt="Third slide">
-			<div class="container" style="position:absolute; top:500px; left:90px;">
+			<div class="container" style="display:flex; justify-content:center">
 	            <div class="carousel-caption">
 		              <h1 style="text-shadow: 0px 0px 5px #f4dc42;">STAR UP !</h1>
 		              <p style="font-family:'Josefin Sans', sans-serif; font-size:26px; text-shadow: 0px 0px 5px #f4dc42;">

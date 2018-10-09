@@ -88,11 +88,11 @@ public class LoginServlet extends HttpServlet {
 		response.addCookie(cookieRememberMe);
 		// ********************************************
 		// 如果 errorMsgMap 不是空的，表示有錯誤，交棒給login.jsp
-		if (!errorMsgMap.isEmpty()) {
-			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-			rd.forward(request, response);
-			return;
-		}
+//		if (!errorMsgMap.isEmpty()) {
+//			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+//			rd.forward(request, response);
+//			return;
+//		}
 		// 進行 Business Logic 運算
 		// 將LoginServiceImpl類別new為物件，存放物件參考的變數為 login
 		
@@ -122,7 +122,6 @@ public class LoginServlet extends HttpServlet {
 		// 5.依照 Business Logic 運算結果來挑選適當的畫面
 		// 如果 errorMsgMap 是空的，表示沒有任何錯誤，交棒給下一棒
 		if (errorMsgMap.isEmpty()) {
-		
 			// 此時不要用下面兩個敘述，因為瀏覽器的網址列不會改變
 			// RequestDispatcher rd = request.getRequestDispatcher("...");
 			// rd.forward(request, response);
@@ -135,16 +134,9 @@ public class LoginServlet extends HttpServlet {
 				return;
 			}
 		} else {
-			// 如果errorMsgMap不是空的，表示有錯誤，交棒給login.jsp
-			response.setCharacterEncoding("UTF-8");
-			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-			rd.forward(request, response);
-			out = response.getWriter();
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('User or password incorrect');");
-			out.println("location='index.jsp';");
-			out.println("</script>");
-			return;
+				RequestDispatcher rd = request.getRequestDispatcher("_02_login/loginError.jsp");
+				rd.forward(request, response);
+				return;
 		}
 	}
 

@@ -153,7 +153,7 @@ public class RegisterServlet extends HttpServlet {
 				session.setAttribute("phone", phone);
 			}
 			if (address == null ||address.trim().length() == 0) {
-				errorMsg.put("erroraddress", "地址未輸入");
+				errorMsg.put("errorAddress", "地址未輸入");
 			}else {
 				session.setAttribute("address", address);
 			}
@@ -169,7 +169,7 @@ public class RegisterServlet extends HttpServlet {
 			}
 		}
 			if (!errorMsg.isEmpty()) {
-				RequestDispatcher rd = request.getRequestDispatcher("Register.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("_01_register/Register.jsp");
 				rd.forward(request, response);
 				return;
 			}
@@ -211,14 +211,14 @@ public class RegisterServlet extends HttpServlet {
 					}
 				}
 				if (!errorMsg.isEmpty()) {
-					RequestDispatcher rd = request.getRequestDispatcher("Register.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("_01_register/Register.jsp");
 					rd.forward(request, response);
 					return;
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				errorMsg.put("errorIDDup", e.getMessage());
-				RequestDispatcher rd = request.getRequestDispatcher("Register.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("_01_register/Register.jsp");
 				rd.forward(request, response);
 			}
 		}

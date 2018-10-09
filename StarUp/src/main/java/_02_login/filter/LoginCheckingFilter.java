@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,8 +24,12 @@ import _01_register.model.UserBean;
 
 @WebFilter(
 			urlPatterns = {"/*"},
-			initParams= {
-					
+			initParams= { 
+					@WebInitParam(name = "mustLogin1", value = "/_03_listBooks/*"),
+					@WebInitParam(name = "mustLogin1", value = "/_03_listBooks/*"), 
+					@WebInitParam(name = "mustLogin2", value = "/_04_ShoppingCart/*"), 
+					@WebInitParam(name = "mustLogin3", value = "/_05_orderProcess/*"),
+					@WebInitParam(name = "mustLogin4", value = "/_20_productMaintain/*")				
 			})
 
 public class LoginCheckingFilter implements Filter {

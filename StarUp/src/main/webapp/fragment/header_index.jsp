@@ -17,10 +17,8 @@
 	crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans"
 	rel="stylesheet">
-<link href="../css/index_main.css" rel="stylesheet">
 <link href="./css/index_main.css" rel="stylesheet">
 </head>
- 
 <body>
 	<div class="container-fluid" style="position: relative; z-index: 10;">
 		<!-- -------------------------navgation----------------------------- -->
@@ -68,11 +66,11 @@
 				<!-- 				&nbsp;&nbsp;&nbsp; -->
 				<c:if test="${empty LoginOK}">
 					<span class="badge badge-pill badge-info"><a
-						href="/StarUp/_01_register/Register.jsp" style="text-decoration: none;">註冊</a></span>
+						href="_01_register/Register.jsp" style="text-decoration: none;">註冊</a></span>
 					&nbsp;&nbsp;&nbsp;
 				</c:if>
 				<!------------------------------------ The Modal -------------------------------------->
-			<%-- 	<c:if test="${!empty ErrorMsgKey}">
+				<c:if test="${!empty ErrorMsgKey}">
 				<script>
 					alert("${ErrorMsgKey.LoginError}");
 				</script>
@@ -94,7 +92,7 @@
 							value="${requestScope.password}" required> &nbsp;<small>
 						<br>
 						<br>
-						<p id="errorMsg">${ErrorMsgKey.LoginError}</p>
+					<%-- 	<p id="errorMsg">${ErrorMsgKey.LoginError}</p> --%>
 						<button type="submit" class="btn btn-outline-primary"
 							style="margin: 10px;">Login</button>
 						<button type="button"
@@ -107,42 +105,42 @@
 					</div>
 				</form>
 			</div>
-			</c:if> --%>
+			</c:if>
 			<!------------------------------------ The Modal -------------------------------------->
+				<c:if test="${empty ErrorMsgKey}">
 					<div id="id01" class="modal">
 						<span
 							onclick="document.getElementById('id01').style.display='none'"
 							class="close" title="Close Modal">&times;</span>
 				
 				<!-- Modal Content -->
-				<form class="modal-content animate border-warning" action="<c:url value='login.do' />" method="POST"
-					style="width: 300px; height: 300px; margin: 100px auto; padding: 30px; text-align: center; background-color:rgba(255, 255, 255,0.9);">
+				<form class="modal-content animate" action="login.do" method="POST"
+					style="width: 300px; height: 300px; margin: 100px auto; padding: 30px; text-align: center;">
 					<div class="container">
-					 <h1 class="h3 mb-3 font-weight-normal">Please Login</h1>
-						<label for="account"  style="margin: 15px;"><b>帳號</b></label>
+						<label for="account" style="margin: 15px;"><b>帳號</b></label>
 						 <input
 							type="text" placeholder="Enter Username" name="account"
-							value="${requestScope.user}" required autofocus>  <br>
+							value="${requestScope.user}" required>  <br>
 						<label for="password" style="margin: 15px;"><b>密碼</b></label>
 						 <input
 							type="password" placeholder="Enter Password" name="password"
 							value="${requestScope.password}" required> &nbsp;
-						<br>
-						<br>
-						
-						<label> <input type="checkbox" checked="checked"
-							name="remember" style="margin: 0px 10px; text-decoration:none;"> Remember me
-						</label>
-						<br>
+						 <br>
+						<br> <br>
+
 						<button type="submit" class="btn btn-outline-primary"
 							style="margin: 10px;">Login</button>
 						<button type="button"
 							onclick="document.getElementById('id01').style.display='none'"
 							class="cancelbtn btn btn-outline-secondary">Cancel</button>
+
+						<br> <label> <input type="checkbox" checked="checked"
+							name="remember" style="margin: 0px 10px;"> Remember me
+						</label>
 					</div>
 				</form>
 			</div>
-	
+			</c:if>
 		
 			<!------------------------------------ The Modal -------------------------------------->
 			
