@@ -11,15 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import _01_register.dao.UserDao;
-import _01_register.dao.impl.UserDaoImpl;
 import _01_register.model.UserBean;
 import _01_register.service.UserService;
-import _01_register.service.impl.UserServiceImpl;
 
 
 // 
@@ -36,12 +34,15 @@ public class RetrieveImageServlet extends HttpServlet {
 		OutputStream os = null;
 		InputStream is = null;
 		String fileName = null;
+		HttpSession session = request.getSession();
 		try {
 			ServletContext sc;
 			WebApplicationContext ctx;
 			// 讀取瀏覽器傳送來的主鍵
 			String id = request.getParameter("id");
-			System.out.println(id);
+			String account = (String) session.getAttribute("account");
+			System.out.println("id: " +id);
+			System.out.println("account: "+account);
 			// 讀取瀏覽器傳送來的type，以分辨要處理哪個表格
 			String type = request.getParameter("type"); 
 			switch(type.toUpperCase()){
@@ -66,6 +67,17 @@ public class RetrieveImageServlet extends HttpServlet {
 					}catch(NullPointerException e) {
 						e.printStackTrace();
 					}
+				case "USER2":			
+					sc = getServletContext();
+					ctx = WebApplicationContextUtils.getWebApplicationContext(sc);
+					UserService service2 = ctx.getBean(UserService.class);
+					UserBean bean2 = service2.getUser2(account);						
+					System.out.println(bean2.getName());
+					is = bean2.getPhoto().getBinaryStream();
+					fileName = bean2.getPhotoName();
+					System.out.println(fileName);
+					break;
+					
 //				case "Product":
 //					ProductService productService = new ProductServiceImpl();
 //					ProductBean bean2 = productService.queryProduct(id);

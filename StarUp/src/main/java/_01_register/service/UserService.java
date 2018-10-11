@@ -10,4 +10,5 @@ public interface UserService {
 	UserBean queryUser(String id);
 	UserBean getUser(int nId);
 	boolean nicknameExists(String nickname);
+	UserBean getUser2(String account);
 }

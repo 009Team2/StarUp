@@ -28,4 +28,6 @@ public interface UserDao {
 		void updateUnpaidOrderAmount(OrderBean ob);
 
 		UserBean queryUser(String id);
+
+		UserBean getUser2(String account);
 }

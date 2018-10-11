@@ -50,4 +50,9 @@ public class UserServiceImpl implements UserService {
 		return dao.nicknameExists(nickname);
 	}
 
+	@Override
+	public UserBean getUser2(String account) {
+		return dao.getUser2(account);
+	}
+
 }

@@ -135,6 +135,17 @@ public class UserDaoImpl implements UserDao {
 
 			return mb;
 		}
+		@SuppressWarnings("unchecked")
+		@Override
+		public UserBean getUser2(String account) {
+			UserBean mb = null;
+			String hql = "FROM UserBean WHERE account = :account ";
+			Session session = factory.getCurrentSession();
+				List<UserBean> list = session.createQuery(hql).setParameter("account", account).getResultList();
+				mb = (list.isEmpty() ? null : list.get(0));
+
+			return mb;
+		}	
 		@Override
 		public void updateUnpaidOrderAmount(OrderBean ob) {
 			double currentAmount = ob.getTotalAmount();
