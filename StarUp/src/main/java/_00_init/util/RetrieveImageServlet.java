@@ -18,6 +18,8 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import _01_register.dao.UserDao;
 import _01_register.dao.impl.UserDaoImpl;
 import _01_register.model.UserBean;
+import _01_register.service.UserService;
+import _01_register.service.impl.UserServiceImpl;
 
 
 // 
@@ -35,34 +37,42 @@ public class RetrieveImageServlet extends HttpServlet {
 		InputStream is = null;
 		String fileName = null;
 		try {
+			ServletContext sc;
+			WebApplicationContext ctx;
 			// 讀取瀏覽器傳送來的主鍵
 			String id = request.getParameter("id");
-			System.out.println("id = "+id);
+			System.out.println(id);
 			// 讀取瀏覽器傳送來的type，以分辨要處理哪個表格
 			String type = request.getParameter("type"); 
 			switch(type.toUpperCase()){
 				case "USER":
 //					UserDao userDao = new UserDaoImpl();
-					ServletContext sc = getServletContext();
-					WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(sc);
-					UserDaoImpl userDao = ctx.getBean(UserDaoImpl.class);
+					sc = getServletContext();
+					ctx = WebApplicationContextUtils.getWebApplicationContext(sc);
+					UserService service = ctx.getBean(UserService.class);
 					int nId = 0;
 					try {
 						nId = Integer.parseInt(id);
-					} catch(NumberFormatException ex) {
-						ex.printStackTrace();;
+					}catch(NumberFormatException ex) {
+						ex.printStackTrace();
 					}
-					UserBean bean1 = userDao.getUser(nId);
-					System.out.println("UserBean = "+bean1);
-					is = bean1.getPhoto().getBinaryStream();
-					fileName = bean1.getPhotoName();
-					System.out.println("File name = "+fileName);
-					break;
+					try{
+						UserBean bean1 = service.getUser(nId);						
+						System.out.println(bean1.getName());
+						is = bean1.getPhoto().getBinaryStream();
+						fileName = bean1.getPhotoName();
+						System.out.println(fileName);
+						break;
+					}catch(NullPointerException e) {
+						e.printStackTrace();
+					}
 //				case "Product":
 //					ProductService productService = new ProductServiceImpl();
 //					ProductBean bean2 = productService.queryProduct(id);
 //					is = bean2.getProductImage().getBinaryStream();  
 //					fileName = bean2.getFileName();
+//					break;
+					
 			}
 
 			// 由圖片檔的檔名來得到檔案的MIME型態

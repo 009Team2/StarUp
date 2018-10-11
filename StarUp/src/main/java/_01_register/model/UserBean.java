@@ -33,26 +33,26 @@ public class UserBean implements Serializable {
 		Timestamp regTime;
 		long unpaid_amount;
 		
-//		public UserBean(Integer user_id, String account, String password, String name, String nickname, String gender, Date birthday,
-//				String phone, String address, Blob photo, String photoName, Clob introduction, Timestamp regTime, long unpaid_amount) 
-//		{
-//			super();
-//			this.user_id = user_id;
-//			this.account = account;
-//			this.password = password;
-//			this.name = name;
-//			this.nickname = nickname;
-//			this.gender = gender;
-//			this.birthday = birthday;
-//			this.phone = phone;
-//			this.address = address;
-//			this.photo = photo;
-//			this.photoName = photoName;
-//			this.introduction = introduction;
-//			this.regTime = regTime;
-//			this.unpaid_amount = unpaid_amount;
-//		}
-//		
+		public UserBean(Integer user_id, String account, String password, String name, String nickname, String gender, Date birthday,
+				String phone, String address, Blob photo, String photoName, Clob introduction, Timestamp regTime, long unpaid_amount) 
+		{
+			super();
+			this.user_id = user_id;
+			this.account = account;
+			this.password = password;
+			this.name = name;
+			this.nickname = nickname;
+			this.gender = gender;
+			this.birthday = birthday;
+			this.phone = phone;
+			this.address = address;
+			this.photo = photo;
+			this.photoName = photoName;
+			this.introduction = introduction;
+			this.regTime = regTime;
+			this.unpaid_amount = unpaid_amount;
+		}
+		
 		// without photoName
 		public UserBean(Integer user_id, String account, String password, String name, String nickname, String gender, Date birthday,
 				String phone, String address, Blob photo, Clob introduction, Timestamp regTime, long unpaid_amount) {
@@ -143,11 +143,11 @@ public class UserBean implements Serializable {
 			this.address = address;
 		}
 		
-		@Transient
+		
 		public String getPhotoName() {
 			return photoName;
 		}
-		@Transient
+		
 		public void setPhotoName(String photoName) {
 			this.photoName = photoName;
 		}

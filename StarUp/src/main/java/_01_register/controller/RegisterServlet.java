@@ -199,7 +199,7 @@ public class RegisterServlet extends HttpServlet {
 					Clob clob = SystemUtils2018.fileToClob("c:\\data\\introduction.txt");
 					File introText = new File("c:\\data\\introduction.txt");// create file object
 					
-					UserBean mem = new UserBean(null, account,password,name,nickname,gender,bir,phone,address,blob,clob,ts,0);	
+					UserBean mem = new UserBean(null, account,password,name,nickname,gender,bir,phone,address,blob,photoName,clob,ts,0);					
 					int n = service.saveUser(mem);
 					introText.delete();// call file method delete() to delete introduction in text file
 					if (n == 1) {

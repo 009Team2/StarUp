@@ -62,7 +62,7 @@
 					<span class="badge badge-pill badge-warning"><a
 						href="_02_login/logout.jsp" style="text-decoration: none;">登出</a>
 					</span> &nbsp;&nbsp;&nbsp; 
-					<img height='40px' width='30px'
+					<img class="rounded-circle" height='45px' width='45px'"
 						src='${pageContext.request.contextPath}/Util/getImage?id=${LoginOK.user_id}&type=USER'>
 				</c:if>
 				<!-- 				<span class="badge badge-pill badge-warning"><a href="login.jsp" style="text-decoration: none;">登入</a></span> -->
@@ -142,7 +142,7 @@
 							class="cancelbtn btn btn-outline-secondary">Cancel</button>
 						<br>
 						<button type="button" class="btn btn-outline-info btn-sm"
-							onclick="document.getElementById('account').value='annieLee@gmail.com'"
+							onclick="document.getElementById('account').value='Codingggg@gmail.com'"
 						><i class="fas fa-user-circle"></i></button>
 						<button type="button" class="btn btn-outline-info btn-sm"
 							onclick="document.getElementById('pswd').value='Do!ng123'"

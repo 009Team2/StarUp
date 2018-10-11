@@ -12,9 +12,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import _00_init.util.GlobalService;
 import _01_register.dao.UserDao;
 import _01_register.model.UserBean;
 import _05_orderProcess.model.OrderBean;
+import _05_orderProcess.model.UnpaidOrderAmountExceedingException;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -25,33 +27,16 @@ public class UserDaoImpl implements UserDao {
 	SessionFactory factory;
 	
 	public UserDaoImpl() {
-//		try {
-//			Context ctx = new InitialContext();
-//			ds = (DataSource) ctx.lookup(GlobalService.JNDI_DB_NAME);
-//			factory = HibernateUtil.getSessionFactory();
-//		} catch (Exception ex) {
-//			ex.printStackTrace();
-//			throw new RuntimeException("UserDaoImpl_Jdbc類別#建構子發生例外: " + ex.getMessage());
-//		}
 	}
 	
 	public int saveUser(UserBean mb) {
 		int count = 0;
 		Session session = factory.getCurrentSession();
-//		Transaction tx = null;
-//		try {
-//			tx = session.beginTransaction();
 			session.save(mb);
 			count++;
-//			tx.commit();
-//		} catch (Exception ex) {
-//			if(tx != null) tx.rollback();
-//			ex.printStackTrace();
-//			throw new RuntimeException("UserService類別#saveUser()發生例外: " 
-//										+ ex.getMessage());
-//		}
 		return count;
 	}
+	
 	// 判斷參數account(會員帳號)是否已經被現有客戶使用，如果是，傳回true，表示此id不能使用，
 	// 否則傳回false，表示此id可使用。
 	@SuppressWarnings("unchecked")
@@ -59,25 +44,13 @@ public class UserDaoImpl implements UserDao {
 		boolean exist = false;
 		String hql = "FROM UserBean WHERE account = :account";
 		Session session = factory.getCurrentSession();
-//		Transaction tx = null;
-//		try {
-//			tx = session.beginTransaction();
+
 			List<UserBean> list = session.createQuery(hql)
 					.setParameter("account", account)
 					.getResultList();
-//			if(list.isEmpty()) {
-//				exist = false;
-//			}else {
-//				exist = true;
-//			}
+
 			exist = (list.isEmpty()) ? false : true;
-//			tx.commit();
-//		} catch (Exception ex) {
-//			if(tx != null) tx.rollback();
-//			ex.printStackTrace();
-//			throw new RuntimeException("UserService類別#idExists()發生例外: " 
-//					+ ex.getMessage());
-//		}
+
 		return exist;
 	}
 	
@@ -86,25 +59,13 @@ public class UserDaoImpl implements UserDao {
 		boolean exist = false;
 		String hql = "FROM UserBean WHERE nickname = :nickname";
 		Session session = factory.getCurrentSession();
-//		Transaction tx = null;
-//		try {
-//			tx = session.beginTransaction();
+
 			List<UserBean> list = session.createQuery(hql)
 					.setParameter("nickname", nickname)
 					.getResultList();
-//			if(list.isEmpty()) {
-//				exist = false;
-//			}else {
-//				exist = true;
-//			}
+
 			exist = (list.isEmpty()) ? false : true;
-//			tx.commit();
-//		} catch (Exception ex) {
-//			if(tx != null) tx.rollback();
-//			ex.printStackTrace();
-//			throw new RuntimeException("UserService類別#idExists()發生例外: " 
-//					+ ex.getMessage());
-//		}
+
 		return exist;
 	}
 	
@@ -114,26 +75,16 @@ public class UserDaoImpl implements UserDao {
 	public List<UserBean> checkLogin(String account,String password) {
 		int i = 0;
 		Session session = factory.getCurrentSession();
-//		Transaction tx = null;
 		List<UserBean> list = null;
 		String hql = "From UserBean u WHERE u.account = :account and u.password = :password";
-//		try {
-//			tx = session.beginTransaction();
+
 			Query query = session.createQuery(hql);
 			query.setParameter("account", account);
 			query.setParameter("password", password);
 			list = query.getResultList();
-//			if(list.size() > 0) {
-//				i=1;
-//			}else {
-//				i=0;
-//			}
+
 			i++;
-//			} catch(Exception ex) {
-//			ex.printStackTrace();
-//			throw new RuntimeException("UserService類別#checkAccountPassword()發生SQL例外: " 
-//					+ ex.getMessage());
-//		}
+
 		return list ;
 	}
 	// 檢查使用者在登入時輸入的帳號與密碼是否正確。如果正確，傳回該帳號所對應的MemberBean物件，
@@ -151,34 +102,7 @@ public class UserDaoImpl implements UserDao {
 					.setParameter("pswd", password)
 					.getResultList();
 			mb = (list.isEmpty() ? null : list.get(0));
-//			try (
-//				Connection con = ds.getConnection(); 
-//				PreparedStatement ps = con.prepareStatement(sql);
-//			) {
-//				ps.setString(1, account);
-//				ps.setString(2, password);
-//				try (ResultSet rs = ps.executeQuery();) {
-//					if (rs.next()) {
-//						mb = new UserBean();
-//						mb.setUser_id(rs.getInt("user_id"));
-//						mb.setAccount(rs.getString("account"));
-//						mb.setPassword(rs.getString("password"));
-//						mb.setName(rs.getString("name"));
-//						mb.setNickname(rs.getString("nickname"));
-//						mb.setGender(rs.getString("gender"));
-//						mb.setBirthday(rs.getDate("birthday"));
-//						mb.setAddress(rs.getString("address"));
-//						mb.setPhoto(rs.getBlob("photo"));
-//						mb.setIntroduction(rs.getClob("introduction"));
-//						mb.setRegTime(rs.getTimestamp("regTime"));
-//						mb.setUnpaid_amount(rs.getLong("unpaid_amount"));
-//					}
-//				}
-//			} catch (SQLException ex) {
-//				ex.printStackTrace();
-//				throw new RuntimeException("UserDaoImpl_Jdbc類別#checkIDPassword()發生SQL例外: " 
-//						+ ex.getMessage());
-//			}
+
 			return mb;
 		}
 
@@ -202,35 +126,49 @@ public class UserDaoImpl implements UserDao {
 
 		@SuppressWarnings("unchecked")
 		@Override
-		public UserBean getUser(int pk) {
-			System.out.println("pk ="+ pk);
-			UserBean ub = null;
-			String hql = "SELECT photo FROM UserBean u WHERE u.user_id = :uid ";
+		public UserBean getUser(int id) {
+			UserBean mb = null;
+			String hql = "FROM UserBean WHERE user_id = :mid ";
 			Session session = factory.getCurrentSession();
-//			Transaction tx = null;
-//			try {
-//				tx = session.beginTransaction();
-				List<UserBean> list = session.createQuery(hql)
-						.setParameter("uid", pk)
-						.getResultList();
-				System.out.println(list);
-				ub = (list.isEmpty()) ? null : list.get(0);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				tx.rollback();
-//			}
-//			System.out.println("ub = "+ub);
-			return ub;
+				List<UserBean> list = session.createQuery(hql).setParameter("mid", id).getResultList();
+				mb = (list.isEmpty()) ? null : list.get(0);
+
+			return mb;
 		}
 		@Override
 		public void updateUnpaidOrderAmount(OrderBean ob) {
-			// TODO Auto-generated method stub
-			
+			double currentAmount = ob.getTotalAmount();
+			Long unpaidAmount = 0L;
+			UserBean ub;
+			String hql = "unpaid_amount FROM UserBean u WHERE u.user_id = :uid";
+			Session session = factory.getCurrentSession();
+			ub = (UserBean)session.createQuery(hql)
+												 .setParameter("uid", ob.getUserId())
+												 .getSingleResult();
+			if(ub != null) {
+				unpaidAmount = ub.getUnpaid_amount();
+			}else {
+				new UserNotFoundException("查無會員資料");
+			}
+			if((currentAmount + unpaidAmount) > GlobalService.ORDER_AMOUNT_LIMIT) {
+				throw new UnpaidOrderAmountExceedingException("未付款金額超過限額"+(currentAmount + unpaidAmount));
+			}else {
+				String hqlUpdate = "UPDATE UserBean u SET u.unpaid_amount = u.unpaid_amount + :amt ";
+				session.createQuery(hqlUpdate).setParameter("amt", currentAmount + unpaidAmount)
+																	 .setParameter("mid", ob.getUserId())
+																	 .executeUpdate();
+			}
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
-		public UserBean queryUser(String id) {
-			// TODO Auto-generated method stub
-			return null;
+		public UserBean queryUser(String account) {
+			UserBean ub = null;
+			String hql = "FROM UserBean WHERE user_id = :uid";
+			Session session = factory.getCurrentSession();
+			List<UserBean> list = session.createQuery(hql).setParameter("uid", account)
+												.getResultList();
+			ub = (list.isEmpty() ? null : list.get(0));
+			return ub;
 		}
 }

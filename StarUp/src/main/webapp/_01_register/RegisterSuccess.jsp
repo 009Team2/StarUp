@@ -11,8 +11,8 @@
 		<div class="card-body">
 			<h4 class="card-title" style="float: left;"><%=session.getAttribute("nickname")%>
 				，Welcome !
-			</h4>
-			<img class="img.circle" src="./images/graduate.png" width="80"
+			</h4>									     
+			<img class="img-circle" src="${pageContext.request.contextPath}/Util/getImage?id=${LoginOK.user_id}&type=USER'" width="80"
 				height="80" style="position: absolute; right: 20px;">
 			<div style="clear: both;"></div>
 			<p class="card-text">
