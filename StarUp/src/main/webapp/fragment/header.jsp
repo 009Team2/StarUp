@@ -50,7 +50,7 @@
 								href="#">影音作品</a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link" href="#">企劃招募</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">商城</a></li>
+					<li class="nav-item"><a class="nav-link" href="_03_product\listProducts.jsp">商城</a></li>
 				</ul>
 				<c:if test="${empty LoginOK}">
 					<span class="badge badge-pill badge-warning"><a href="#"
@@ -59,8 +59,7 @@
 					</span> &nbsp;&nbsp;&nbsp; 
 				</c:if>
 				<c:if test="${!empty LoginOK}">
-					<span class="badge badge-pill badge-warning"><a
-						href="_02_login/logout.jsp" style="text-decoration: none;">登出</a>
+					<span class="badge badge-pill badge-warning"><a href="<c:url value='/_02_login/logout.jsp' />" style="text-decoration:none;">登出</a>
 					</span> &nbsp;&nbsp;&nbsp; 
 					<img class="rounded-circle" height='45px' width='45px'"
 						src='${pageContext.request.contextPath}/Util/getImage?id=${LoginOK.user_id}&type=USER'>
@@ -72,43 +71,6 @@
 						href="/StarUp/_01_register/Register.jsp" style="text-decoration: none;">註冊</a></span>
 					&nbsp;&nbsp;&nbsp;
 				</c:if>
-				<!------------------------------------ The Modal -------------------------------------->
-			<%-- 	<c:if test="${!empty ErrorMsgKey}">
-				<script>
-					alert("${ErrorMsgKey.LoginError}");
-				</script>
-					<div id="id01" class="modal" style="display:block;">
-						<span
-							onclick="document.getElementById('id01').style.display='none'"
-							class="close" title="Close Modal">&times;</span>
-				
-				<!-- Modal Content -->
-				<form class="modal-content animate" action="login.do" method="POST"
-					style="width: 300px; height: 300px; margin: 100px auto; padding: 30px; text-align: center;">
-					<div class="container">
-						<label for="account" style="margin: 15px;"><b>帳號</b></label> <input
-							type="text" placeholder="Enter Username" name="account"
-							value="${requestScope.user}" required> 
-						<br>
-						<label for="password" style="margin: 15px;"><b>密碼</b></label> <input
-							type="password" placeholder="Enter Password" name="password"
-							value="${requestScope.password}" required> &nbsp;<small>
-						<br>
-						<br>
-						<p id="errorMsg">${ErrorMsgKey.LoginError}</p>
-						<button type="submit" class="btn btn-outline-primary"
-							style="margin: 10px;">Login</button>
-						<button type="button"
-							onclick="document.getElementById('id01').style.display='none'"
-							class="cancelbtn btn btn-outline-secondary">Cancel</button>
-
-						<br> <label> <input type="checkbox" checked="checked"
-							name="remember" style="margin: 0px 10px;"> Remember me
-						</label>
-					</div>
-				</form>
-			</div>
-			</c:if> --%>
 			<!------------------------------------ The Modal -------------------------------------->
 					<div id="id01" class="modal">
 						<span
@@ -117,7 +79,7 @@
 				
 				<!-- Modal Content -->
 				<form class="modal-content animate border-warning" action="<c:url value='/login.do' />" method="POST"
-					style="width: 300px; height: 350px; margin: 100px auto; padding: 30px; text-align: center; background-color:rgba(255, 255, 255,0.9);">
+					style="width: 300px; height: 370px; margin: 100px auto; padding: 30px; text-align: center; background-color:rgba(255, 255, 255,0.9);">
 					<div class="container">
 					 <h1 class="h3 mb-3 font-weight-normal">Please Login</h1>
 						<label for="account"  style="margin: 15px;"><b>帳號</b></label>
@@ -152,7 +114,7 @@
 			</div>
 	
 		
-			<!------------------------------------ The Modal -------------------------------------->
+			<!------------------------------------ The Modal End-------------------------------------->
 			
 	</div>
 	</nav>
