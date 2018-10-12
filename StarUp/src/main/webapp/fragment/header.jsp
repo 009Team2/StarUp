@@ -50,7 +50,7 @@
 								href="#">影音作品</a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link" href="#">企劃招募</a></li>
-					<li class="nav-item"><a class="nav-link" href="_03_product\listProducts.jsp">商城</a></li>
+					<li class="nav-item"><a class="nav-link" href="<c:url value='/_03_product/listProducts.jsp' />">商城</a></li>
 				</ul>
 				<c:if test="${empty LoginOK}">
 					<span class="badge badge-pill badge-warning"><a href="#"
