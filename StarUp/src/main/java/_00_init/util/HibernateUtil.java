@@ -23,7 +23,7 @@ public class HibernateUtil {
 			// 由組態檔(hibernate.cfg.xml)內的資訊來建立SessionFactory物件
 			// Hibernate 5.x 的寫法
 			StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
-			.configure("hibernate.cfg.xml").build();
+			.configure("hibernateOnly.cfg.xml").build();
 			// 以下為Mapping檔的寫法
 			MetadataSources sources = new MetadataSources(standardRegistry);
 			Metadata metadata = sources.getMetadataBuilder().build();

@@ -154,6 +154,9 @@ public class RegisterServlet extends HttpServlet {
 			}
 			if (address == null ||address.trim().length() == 0) {
 				errorMsg.put("errorAddress", "地址未輸入");
+			}
+			if (is == null) {
+				errorMsg.put("errorPhoto", "頭像圖片未上傳");
 			}else {
 				session.setAttribute("address", address);
 			}
