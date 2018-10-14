@@ -48,27 +48,81 @@
             <!-- 側邊欄 -->
             <div class="section col-lg-2" style="width:100px; padding: 20px 0px;">
                 <nav class="nav flex-column nav-tabs">
-                    <a class="nav-link active" href="#">分類商品</a>
-                    <a class="nav-link" href="#">原創桌遊</a>
-                    <a class="nav-link" href="#">文創周邊小物</a>
+                    <a class="nav-link active">分類商品</a>
+                    <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">原創桌遊</a>
+                    <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">文創周邊小物</a>
                     
                 </nav>
                 <nav class="nav flex-column nav-tabs">
-                        <a class="nav-link active" href="#">人氣商品推薦</a>
-                        <a class="nav-link" href="#">每週新品</a>
-                        <a class="nav-link" href="#">熱銷推薦</a>
-                        <a class="nav-link" href="#">高冷系列</a>
-                        <a class="nav-link" href="#">厭世系列</a>
-                        <a class="nav-link" href="#">簡約系列</a>
-                        <a class="nav-link" href="#">丹寧系列</a>
-                        <a class="nav-link" href="#">個性系列</a>
-                        
+                        <a class="nav-link active">人氣商品推薦</a>
+                        <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">每週新品</a>
+                        <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">熱銷推薦</a>
+                        <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">暖心小物</a>
+                        <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">厭世人森</a>
+                        <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">質感選物</a>
                 </nav>
                 <nav class="nav flex-column nav-tabs">
-                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart fa-lg"></i></a>
-                        <a class="nav-link" href="#">購物清單</a>
-                        <a class="nav-link" href="#">我的訂單</a>
-                        
+                        <a class="nav-link" href="#" onclick="document.getElementById('id02').style.display='block'"s><i class="fas fa-shopping-cart fa-lg"></i></a>
+                        <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">結帳</a>
+                <!-- Modal Start-->
+                        		<div id="id02" class="modal">
+									<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+				<!-- Modal Content -->
+									<form class="modal-content animate border-primary col-lg-8 ">
+										<div class="container">
+											<h4>Shopping Cart</h4>
+											<br>
+											
+											<div class="item">
+												<table class="cart">
+												  <tr>
+													    <th style="width:250px;">商品名稱</th>
+													    <th style="width:200px;">出品</th>
+													    <th style="width:80px;">單價</th>
+													    <th style="width:80px;">數量</th>
+													    <th style="width:80px;">小計</th>
+													    <th style="width:80px;"></th>
+												  </tr>
+												  <tr>
+												    <td>台灣鐵路環島旅行帆布地圖</td>
+												    <td>TRC台灣鐵道故事館</td>
+												    <td>$500</td>
+												    <td>
+												    	<select>
+													    	<option value="1" >1</option>
+													    	<option value="2" >2</option>
+													    	<option value="3" >3</option>
+													    	<option value="4" >4</option>
+													    	<option value="5" >5</option>
+													    	<option value="1" >6</option>
+													    	<option value="2" >7</option>
+													    	<option value="3" >8</option>
+													    	<option value="4" >9</option>
+													    	<option value="5" >10</option>												    	
+												    	</select>
+												    </td>
+												    <td>$500</td>
+												    <td><img class="prodImg"src="" ></td>
+												  </tr>
+												</table>
+												  <button type="submit" class="btn btn-outline-warning"style="margin: 10px;">Checkout</button>
+												  <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn btn btn-outline-info">Coutinue</button>
+											</div>
+											<c:choose>
+											   <c:when test="${ShoppingCart.subtotal > 0}">
+											      <c:set var="subtotalMessage" value="金額小計:${ShoppingCart.subtotal} 元"/>
+											      <c:set var="subtotal" value="${ShoppingCart.subtotal}"/>  
+											   </c:when>
+											   <c:otherwise>
+											      <c:set var="subtotalMessage" value="金額小計:  0 元"/>
+											      <c:set var="subtotal" value="0"/>                
+											   </c:otherwise>
+											</c:choose>
+										</div>
+									</form>
+								</div>
+
+			    <!------------------------------------ Modal End-------------------------------------->
                 </nav>
             </div>
             <!-- 商品列表 -->
