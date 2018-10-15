@@ -48,9 +48,12 @@
 							<a class="dropdown-item" href="#">繪圖作品</a> <a
 								class="dropdown-item" href="#">文字作品</a> <a class="dropdown-item"
 								href="#">影音作品</a>
-						</div></li>
+						</div></li>															
 					<li class="nav-item"><a class="nav-link" href="#">企劃招募</a></li>
-					<li class="nav-item"><a class="nav-link" href="<c:url value='/_03_product/listProducts.jsp' />">商城</a></li>
+					<li class="nav-item"><a class="nav-link" href="<c:url value='/_03_listProducts/DisplayPageProducts'/>">商城</a></li>
+					<c:if test="${!empty LoginOK}">
+						<li class="nav-item"><a class="nav-link" href="<c:url value=' #'/> "onclick="document.getElementById('id02').style.display='block'"><i class="fas fa-shopping-cart fa-lg" style="color:#e0e0e0;"></i></a></li>
+					</c:if>
 				</ul>
 				<c:if test="${empty LoginOK}">
 					<span class="badge badge-pill badge-warning"><a href="#"
@@ -71,7 +74,7 @@
 						href="/StarUp/_01_register/Register.jsp" style="text-decoration: none;">註冊</a></span>
 					&nbsp;&nbsp;&nbsp;
 				</c:if>
-			<!------------------------------------ The Modal -------------------------------------->
+			<!------------------------------------ Login Modal -------------------------------------->
 					<div id="id01" class="modal">
 						<span
 							onclick="document.getElementById('id01').style.display='none'"
@@ -114,7 +117,66 @@
 			</div>
 	
 		
-			<!------------------------------------ The Modal End-------------------------------------->
+			<!------------------------------------ Login Modal End-------------------------------------->
+			<!------------------------------------ Cart Modal------------------------------------------->
+                        		<div id="id02" class="modal">
+									<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+				<!-- Modal Content -->
+									<form class="modal-content animate border-primary col-lg-8 ">
+										<div class="container">
+											<h4>Shopping Cart</h4>
+											<br>
+											
+											<div class="item">
+												<table class="cart">
+												  <tr>
+													    <th style="width:250px;">商品名稱</th>
+													    <th style="width:200px;">出品</th>
+													    <th style="width:80px;">單價</th>
+													    <th style="width:80px;">數量</th>
+													    <th style="width:80px;">小計</th>
+													    <th style="width:80px;"></th>
+												  </tr>
+												  <tr>
+												    <td>台灣鐵路環島旅行帆布地圖</td>
+												    <td>TRC台灣鐵道故事館</td>
+												    <td>$500</td>
+												    <td>
+												    	<select>
+													    	<option value="1" >1</option>
+													    	<option value="2" >2</option>
+													    	<option value="3" >3</option>
+													    	<option value="4" >4</option>
+													    	<option value="5" >5</option>
+													    	<option value="1" >6</option>
+													    	<option value="2" >7</option>
+													    	<option value="3" >8</option>
+													    	<option value="4" >9</option>
+													    	<option value="5" >10</option>												    	
+												    	</select>
+												    </td>
+												    <td>$500</td>
+												    <td><img class="prodImg"src="" ></td>
+												  </tr>
+												</table>
+												  <button type="submit" class="btn btn-outline-warning"style="margin: 10px;">結帳</button>
+												  <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn btn btn-outline-info">繼續逛逛</button>
+											</div>
+											<c:choose>
+											   <c:when test="${ShoppingCart.subtotal > 0}">
+											      <c:set var="subtotalMessage" value="金額小計:${ShoppingCart.subtotal} 元"/>
+											      <c:set var="subtotal" value="${ShoppingCart.subtotal}"/>  
+											   </c:when>
+											   <c:otherwise>
+											      <c:set var="subtotalMessage" value="金額小計:  0 元"/>
+											      <c:set var="subtotal" value="0"/>                
+											   </c:otherwise>
+											</c:choose>
+										</div>
+									</form>
+								</div>
+
+			    <!------------------------------------Cart Modal End-------------------------------------->
 			
 	</div>
 	</nav>

@@ -21,7 +21,7 @@ import _01_register.model.UserBean;
 import _03_listProducts.model.ProductBean;
 import _03_listProducts.service.ProductService;
 
-@WebServlet("/_03_listBooks/DisplayPageProducts")
+@WebServlet("/_03_listProducts/DisplayPageProducts")
 //本控制器負責進行必要的前置作業，以便Dao取回某一頁的商品資料
 public class RetrievePageProducts extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -46,9 +46,9 @@ public class RetrievePageProducts extends HttpServlet {
 			return;
 		}
 		// 登入成功後，Session範圍內才會有LoginOK對應的MemberBean物件
-		UserBean mb = (UserBean) session.getAttribute("LoginOK");
+		UserBean ub = (UserBean) session.getAttribute("LoginOK");
 		// 取出使用者的memberId，後面的Cookie會用到 
-	Integer memberId = mb.getUser_id();
+		Integer userId = ub.getUser_id();
 		// BookService介面負責讀取資料庫內Book表格內某一頁的書籍資料，並能新增、修改、刪除
 		// 書籍資料等。
 //		BookService service = null; // BookService
@@ -62,7 +62,7 @@ public class RetrievePageProducts extends HttpServlet {
 			if (cookies != null) {
 				// 逐筆檢視Cookie內的資料
 				for (Cookie c : cookies) {
-					if (c.getName().equals(memberId + "pageNo")) {
+					if (c.getName().equals(userId + "pageNo")) {
 						try {
 							pageNo = Integer.parseInt(c.getValue().trim());
 						} catch (NumberFormatException e) {
@@ -95,10 +95,10 @@ public class RetrievePageProducts extends HttpServlet {
 		request.setAttribute("totalPages", service.getTotalPages());
 		// 將讀到的一頁資料放入request物件內，成為它的屬性物件
 		request.setAttribute("products_DPP", coll);
-
+											   
 		// 使用Cookie來儲存目前讀取的網頁編號，Cookie的名稱為memberId + "pageNo"
 		// -----------------------
-		Cookie pnCookie = new Cookie(memberId + "pageNo", String.valueOf(pageNo));
+		Cookie pnCookie = new Cookie(userId + "pageNo", String.valueOf(pageNo));
 	    // 設定Cookie的存活期為30天
 		pnCookie.setMaxAge(30 * 24 * 60 * 60);
 	    // 設定Cookie的路徑為 Context Path		
@@ -108,7 +108,7 @@ public class RetrievePageProducts extends HttpServlet {
 		// -----------------------
 		// 交由listBooks.jsp來顯示某頁的書籍資料，同時準備『第一頁』、
 		// 『前一頁』、『下一頁』、『最末頁』等資料
-		RequestDispatcher rd = request.getRequestDispatcher("listProducts.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/_03_product/listProducts.jsp");
 		rd.forward(request, response);
 		return;
 

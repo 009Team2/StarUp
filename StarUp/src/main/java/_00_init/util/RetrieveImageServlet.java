@@ -18,6 +18,9 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import _01_register.model.UserBean;
 import _01_register.service.UserService;
+import _03_listProducts.model.ProductBean;
+import _03_listProducts.service.ProductService;
+import _03_listProducts.service.impl.ProductServiceImpl;
 
 
 // 
@@ -78,12 +81,18 @@ public class RetrieveImageServlet extends HttpServlet {
 					System.out.println(fileName);
 					break;
 					
-//				case "Product":
-//					ProductService productService = new ProductServiceImpl();
-//					ProductBean bean2 = productService.queryProduct(id);
-//					is = bean2.getProductImage().getBinaryStream();  
-//					fileName = bean2.getFileName();
-//					break;
+				case "Product":
+					nId = 0;
+					try {
+						nId = Integer.parseInt(id);
+					}catch(NumberFormatException ex) {
+						ex.printStackTrace();
+					}
+					ProductService productService = new ProductServiceImpl();
+					ProductBean bean3 = productService.queryProd(nId);
+					is = bean3.getProdImg().getBinaryStream();  
+					fileName = bean3.getProdImgName();
+					break;
 					
 			}
 

@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<context:component-scan base-package="_01_register, _02_login"/>
+	<context:component-scan base-package="_01_register, _02_login, _03_listProducts"/>
 	
 				
 	<tx:annotation-driven/>
@@ -46,7 +46,7 @@
 <!-- 		</bean> -->
 		<bean id ="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSourceC3P0"/>
-		<property name="packagesToScan" value="_01_register.model, _02_login.model"/>
+		<property name="packagesToScan" value="_01_register.model, _02_login.model, _03_listProducts.model"/>
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"/>		
 	</bean>
 
