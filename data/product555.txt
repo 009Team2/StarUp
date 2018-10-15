@@ -1,3 +1,3 @@
-欄位名稱對照表: 商城商品的欄位順序, 順序要對
+欄位名稱對照表: 商城商品的欄位順序, 順序要對阿
 prodName|prodType|prodImg|prodImgName|prodStock|prodPrice|prodCompany|prodIntro|
 
