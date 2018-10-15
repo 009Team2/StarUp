@@ -21,7 +21,6 @@ import _03_listProducts.repository.ProductDao;
 		private int pageNo = 0;		// 存放目前顯示之頁面的編號
 		private int recordsPerPage = GlobalService.RECORDS_PER_PAGE; // 預設值：每頁三筆
 		private int totalPages = -1;
-//		DataSource ds = null;
 		
 		@Autowired
 		SessionFactory factory;
@@ -37,7 +36,6 @@ import _03_listProducts.repository.ProductDao;
 		public int getTotalPages() {
 			// 注意下一列敘述的每一個型態轉換
 			totalPages = (int) (Math.ceil(getRecordCounts() / (double) recordsPerPage));
-
 			return totalPages;
 		}
 		
@@ -47,7 +45,7 @@ import _03_listProducts.repository.ProductDao;
 		public List<ProductBean> getPageProds() {
 			List<ProductBean> list = new ArrayList<ProductBean>();
 			// 由頁碼推算出該頁是由哪一筆紀錄開始(1 based)
-			int startRecordNo = (pageNo - 1) * recordsPerPage + 1;
+			int startRecordNo = (pageNo - 1) * recordsPerPage;
 //			int endRecordNo = (pageNo) * recordsPerPage;
 
 			Session session = factory.getCurrentSession();
@@ -60,7 +58,7 @@ import _03_listProducts.repository.ProductDao;
 					
 			return list;
 		}
-
+		
 		@Override
 		public int getPageNo() {
 			return pageNo;

@@ -27,7 +27,11 @@
 		<property name="jdbcUrl"
 			value="jdbc:mysql://localhost:3306/star_up?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false" />
 		<property name="user" value="root" />
+<<<<<<< HEAD
 		<property name="password" value="jesus299" />
+=======
+		<property name="password" value="54321" />
+>>>>>>> 17e470926c2ddf7987779847e64b0b71e3f3deed
 	</bean>
 
 	<bean id="dataSourceBasic" class="org.apache.commons.dbcp.BasicDataSource">	                                  

@@ -104,7 +104,6 @@ public class InsertProductMySQL {
 					BufferedReader br = new BufferedReader(isr);) 
 		    {
 				while ((line = br.readLine()) != null) {
-					n = 0;
 					// 去除 UTF8_BOM: \uFEFF
 					if (line.startsWith(UTF8_BOM)) {
 						line = line.substring(1);
@@ -126,14 +125,15 @@ public class InsertProductMySQL {
 					n++;
 					System.out.println("新增一筆Product紀錄是否成功=" + n);
 				}
+				tx.commit();
 				// 印出資料新增成功的訊息
 				System.out.println("Product資料新增成功");
+				
 			} catch (IOException e) {
 				System.err.println("新建Product表格時發生IO例外: " + e.getMessage());
 			} catch (SQLException e) {
 				System.err.println("新建Product表格時發生SQL例外: " + e.getMessage());
 			}
-			tx.commit();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			if (tx != null)

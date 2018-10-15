@@ -38,17 +38,16 @@ public class RetrievePageProducts extends HttpServlet {
 			throws ServletException, IOException {
 		// 先取出session物件
 		HttpSession session = request.getSession(false);
-
+		UserBean ub = null;
+		Integer userId = 0;
 		// 如果session物件不存在
-		if (session == null) {
+		if (session != null) {
 			// 請使用者登入
-			response.sendRedirect(response.encodeRedirectURL("../_02_login/login.jsp"));
-			return;
+			// 登入成功後，Session範圍內才會有LoginOK對應的MemberBean物件
+			ub = (UserBean) session.getAttribute("LoginOK");
+			// 取出使用者的memberId，後面的Cookie會用到 
+			userId = ub.getUser_id();			
 		}
-		// 登入成功後，Session範圍內才會有LoginOK對應的MemberBean物件
-		UserBean ub = (UserBean) session.getAttribute("LoginOK");
-		// 取出使用者的memberId，後面的Cookie會用到 
-		Integer userId = ub.getUser_id();
 		// BookService介面負責讀取資料庫內Book表格內某一頁的書籍資料，並能新增、修改、刪除
 		// 書籍資料等。
 //		BookService service = null; // BookService
@@ -88,7 +87,7 @@ public class RetrievePageProducts extends HttpServlet {
 		//
 		// 讀取一頁的書籍資料之前，告訴service，現在要讀哪一頁
 		service.setPageNo(pageNo);
-		request.setAttribute("baBean", service);
+		request.setAttribute("prodBean", service);
 		// service.getPageBooks()方法開始讀取一頁的書籍資料
 		Collection<ProductBean> coll = service.getPageProds();
 		request.setAttribute("pageNo", pageNo);

@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 prodName|prodType|prodImg|prodImgName|prodStock|prodPrice|prodCompany|prodIntro
+=======
+欄位名稱對照表: 商城商品的欄位順序, 順序要對
+prodName|prodType|prodImg|prodImgName|prodStock|prodPrice|prodCompany|prodIntro|
+
+>>>>>>> 17e470926c2ddf7987779847e64b0b71e3f3deed
