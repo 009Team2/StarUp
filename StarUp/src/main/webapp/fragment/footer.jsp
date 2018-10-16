@@ -3,10 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- Footer -->
-        <footer class="page-footer font-small" >
+		<div style="height:50px;">
+        <footer class="page-footer font-small"  style="background-color:rgba(51, 51, 51, 0.9);">
        <!-- Copyright -->
-           <div class="footer-copyright text-center py-3">© 2018 Copyright:
-           <a href="https://mdbootstrap.com/bootstrap-tutorial/"> NTUT JAVA009 Team2</a>
+           <div class="footer-copyright text-center py-3">
+           		<a>使用規範 ｜</a><a>意見回饋 ｜</a><a>關於我們 ｜</a>
+           		© 2018 Copyright :  NTUT JAVA009 Team2
            </div>
        <!-- Copyright -->
         </footer>

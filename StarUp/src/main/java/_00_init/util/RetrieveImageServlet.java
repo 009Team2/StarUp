@@ -82,15 +82,18 @@ public class RetrieveImageServlet extends HttpServlet {
 					System.out.println(fileName);
 					break;
 					
-				case "Product":
+				case "PRODUCT":
 					nId = 0;
+					sc = getServletContext();
+					ctx = WebApplicationContextUtils.getWebApplicationContext(sc);
+					ProductService productService = ctx.getBean(ProductService.class);
 					try {
 						nId = Integer.parseInt(id);
 					}catch(NumberFormatException ex) {
 						ex.printStackTrace();
 					}
-					ProductService productService = new ProductServiceImpl();
 					ProductBean bean3 = productService.getProd(nId);
+					System.out.println(bean3);
 					is = bean3.getProdImg().getBinaryStream();  
 					fileName = bean3.getProdImgName();
 					break;
