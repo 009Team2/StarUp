@@ -40,7 +40,7 @@
                         <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">每週新品</a>
                         <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">熱銷推薦</a>
                         <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">暖心小物</a>
-                        <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">厭世人森</a>
+                        <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">城市紋理</a>
                         <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">質感選物</a>
                 </nav>
                 <nav class="nav flex-column nav-tabs">
