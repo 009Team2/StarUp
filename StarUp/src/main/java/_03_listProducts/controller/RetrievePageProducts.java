@@ -17,6 +17,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import _00_init.util.GlobalService;
+
 import _01_register.model.UserBean;
 import _03_listProducts.model.ProductBean;
 import _03_listProducts.service.ProductService;
@@ -41,16 +42,17 @@ public class RetrievePageProducts extends HttpServlet {
 		UserBean ub = null;
 		Integer userId = 0;
 		// 如果session物件不存在
-		if (session != null) {
-			// 請使用者登入
-			// 登入成功後，Session範圍內才會有LoginOK對應的MemberBean物件
-			ub = (UserBean) session.getAttribute("LoginOK");
-			// 取出使用者的memberId，後面的Cookie會用到 
-			userId = ub.getUser_id();			
-		}
-		// BookService介面負責讀取資料庫內Book表格內某一頁的書籍資料，並能新增、修改、刪除
-		// 書籍資料等。
-//		BookService service = null; // BookService
+				if (session == null) {
+					// 請使用者登入
+					response.sendRedirect(response.encodeRedirectURL("../_02_login/loginError.jsp"));
+					return;
+				}
+				// 登入成功後，Session範圍內才會有LoginOK對應的MemberBean物件
+				ub = (UserBean) session.getAttribute("LoginOK");
+				// 取出使用者的memberId，後面的Cookie會用到 
+				userId = ub.getUser_id();
+				// ProductService介面負責讀取資料庫內Product表格內某一頁的商品資料，並能新增、修改、刪除
+
 		// 讀取瀏覽送來的 pageNo
 		String pageNoStr = request.getParameter("pageNo");
 		// 如果讀不到，直接點選主功能表的『購物』就不會送 pageNo給後端伺服器

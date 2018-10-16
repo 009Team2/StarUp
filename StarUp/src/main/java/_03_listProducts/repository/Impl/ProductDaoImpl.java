@@ -96,6 +96,7 @@ import _03_listProducts.repository.ProductDao;
 		public void setProdId(int prod_id) {
 			this.prod_id = prod_id;
 		}
+		
 		@Override
 		public ProductBean getProd() {
 			ProductBean bean = queryProd(this.prod_id);

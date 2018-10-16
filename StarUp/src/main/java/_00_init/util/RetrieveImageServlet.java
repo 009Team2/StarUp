@@ -32,6 +32,7 @@ import _03_listProducts.service.impl.ProductServiceImpl;
 public class RetrieveImageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("resource")
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		OutputStream os = null;
@@ -89,7 +90,7 @@ public class RetrieveImageServlet extends HttpServlet {
 						ex.printStackTrace();
 					}
 					ProductService productService = new ProductServiceImpl();
-					ProductBean bean3 = productService.queryProd(nId);
+					ProductBean bean3 = productService.getProd(nId);
 					is = bean3.getProdImg().getBinaryStream();  
 					fileName = bean3.getProdImgName();
 					break;
