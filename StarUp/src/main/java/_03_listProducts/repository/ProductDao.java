@@ -52,4 +52,6 @@ public interface ProductDao {
 
 	int updateProd(ProductBean bean);
 
+	List<ProductBean> getCategoryProds(String category);
+
 }

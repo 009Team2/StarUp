@@ -26,10 +26,12 @@ public class ProductBean implements Serializable {
 	private String prodIntro;
 	private Date productUpDate;
 	private Date productOutDate;
+	private String prodCategory;
+	private Integer prodRate;
 
 	public ProductBean(Integer prod_id, String prodName, String prodType, Blob prodImg, String prodImgName,
 			Integer prodStock, Integer prodPrice, String prodCompany, String prodIntro, Date productUpDate,
-			Date productOutDate) {
+			Date productOutDate, String prodCategory, Integer prodRate) {
 		super();
 		this.prod_id = prod_id;
 		this.prodName = prodName;
@@ -42,6 +44,8 @@ public class ProductBean implements Serializable {
 		this.prodIntro = prodIntro;
 		this.productUpDate = productUpDate;
 		this.productOutDate = productOutDate;
+		this.prodCategory = prodCategory;
+		this.prodRate = prodRate;
 	}
 
 	public ProductBean() {
@@ -140,6 +144,22 @@ public class ProductBean implements Serializable {
 
 	public void setProdCompany(String prodCompany) {
 		this.prodCompany = prodCompany;
+	}
+
+	public String getProdCategory() {
+		return prodCategory;
+	}
+
+	public void setProdCategory(String prodCategory) {
+		this.prodCategory = prodCategory;
+	}
+
+	public Integer getProdRate() {
+		return prodRate;
+	}
+
+	public void setProdRate(Integer prodRate) {
+		this.prodRate = prodRate;
 	}
 
 }

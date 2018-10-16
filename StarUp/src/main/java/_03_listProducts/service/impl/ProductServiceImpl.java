@@ -92,4 +92,9 @@ public class ProductServiceImpl implements ProductService {
 	public List<String> getProdType() {
 		return dao.getProdType();
 	}
+
+	@Override
+	public List<ProductBean> getCategoryProds(String category) {
+		return dao.getCategoryProds(category);
+	}
 }

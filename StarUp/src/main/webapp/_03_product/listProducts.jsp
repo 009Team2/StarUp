@@ -60,7 +60,7 @@
                             <p class="prodName" style="margin:0px; font-weight: 600; font-size: 17px; ">${ProductBean.prodName}</p>
                             <p class="company" style="margin:0px; font-weight: 100; ">By ${ProductBean.prodCompany} </p>
                             <p class="intro" style="margin:0px; font-weight: 400; font-size: 14px;">${ProductBean.prodIntro}</p>
-                           <p style="font-size: 20px; padding-left: 180px ;color: rgb(34, 9, 68)">$ ${ProductBean.prodPrice} <span style="font-size:27px; align-items: right;color:rgb(44, 48, 86)"><i class="fa fa-cart-plus fa-1x"  aria-hidden="true"></i></span></p>
+                           <p style="font-size: 20px; padding-left: 180px ;padding-top:10px;color: rgb(34, 9, 68)">$ ${ProductBean.prodPrice} <span style="font-size:20px; align-items: right;color:rgb(44, 48, 86)"><i class="fa fa-cart-plus"  aria-hidden="true"></i></span></p>
                         </div>
                 </div>
                 

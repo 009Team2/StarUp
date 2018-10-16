@@ -228,6 +228,14 @@ import _03_listProducts.repository.ProductDao;
 		public void setTagName(String tagName) {
 			this.tagName = tagName;
 		}
+		@SuppressWarnings("unchecked")
+		public List<ProductBean> getCategoryProds(String category){
+			List<ProductBean> list = null;
+			String hql = "SELECT FROM ProductBean WHERE prodCategory = :category";
+			Session session = factory.getCurrentSession();
+			list = session.createQuery(hql).getResultList();
+			return list;
+		}
 
 	}
 

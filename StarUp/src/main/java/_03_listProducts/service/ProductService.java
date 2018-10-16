@@ -16,6 +16,8 @@ public interface ProductService {
 	void setPageNo(int pageNo);
 
 	int getRecordsPerPage();
+	
+	List<ProductBean> getCategoryProds(String category);
 
 	void setRecordsPerPage(int recordsPerPage);
 
