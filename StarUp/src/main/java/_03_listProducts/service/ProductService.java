@@ -1,5 +1,6 @@
 package _03_listProducts.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import _03_listProducts.model.ProductBean;
@@ -45,4 +46,8 @@ public interface ProductService {
 	List<String> getProdType();
 
 	void setProdCategory(String category);
+
+	void setProdType(String prodType);
+
+	List<ProductBean> getTypeProds();
 }

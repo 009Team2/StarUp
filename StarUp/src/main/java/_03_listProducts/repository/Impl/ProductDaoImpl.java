@@ -28,6 +28,7 @@ import _03_listProducts.repository.ProductDao;
 		
 		private String tagName = "";
 		String selected = "";
+		private String prodType;
 
 		public ProductDaoImpl() {
 			
@@ -244,6 +245,24 @@ import _03_listProducts.repository.ProductDao;
 		public void setProdCategory(String prodCategory) {
 			this.prodCategory = prodCategory;
 			
+		}
+
+		@Override
+		public void setProdType(String prodType) {
+			this.prodType = prodType;
+			
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<ProductBean> getTypeProds() {
+			List<ProductBean> list = null;
+			System.out.println("開始查詢類別商品"+prodType);
+			String hql = "FROM ProductBean p WHERE p.prodType = :type";
+			Session session = factory.getCurrentSession();
+			list = session.createQuery(hql).setParameter("type",prodType).getResultList();
+			System.out.println(list);
+			return list;
 		}
 
 	}

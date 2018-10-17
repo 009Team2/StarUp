@@ -56,6 +56,7 @@ public class RetrievePageProducts extends HttpServlet {
 		// 讀取瀏覽送來的 pageNo
 		String pageNoStr = request.getParameter("pageNo");
 		String category = request.getParameter("category");
+		String prodType = request.getParameter("prod_type");
 		// 如果讀不到，直接點選主功能表的『購物』就不會送 pageNo給後端伺服器
 		if (pageNoStr == null) {  
 			pageNo = 1;
@@ -91,15 +92,23 @@ public class RetrievePageProducts extends HttpServlet {
 		// 讀取一頁的書籍資料之前，告訴service，現在要讀哪一頁
 		service.setPageNo(pageNo);
 		service.setProdCategory(category);
+		service.setProdType(prodType);
 		request.setAttribute("prodBean", service);
 		// service.getPageBooks()方法開始讀取一頁的書籍資料
-		if(category != null) {
+		if(category != null) {		//抓到不同分類的商品(e.x.暖心小物
 			Collection<ProductBean> coll = service.getCategoryProds();
 			System.out.println(coll);
 			request.setAttribute("pageNo", pageNo);
 			request.setAttribute("totalPages", (int) (Math.ceil(coll.size() / (double) GlobalService.RECORDS_PER_PAGE)));
 			// 將讀到的一頁資料放入request物件內，成為它的屬性物件
 			request.setAttribute("products_cate", coll);
+		}else if(prodType != null){			//單獨抓到周邊或桌遊商品
+			Collection<ProductBean> coll = service.getTypeProds();
+			System.out.println(coll);
+			request.setAttribute("pageNo", pageNo);
+			request.setAttribute("totalPages", (int) (Math.ceil(coll.size() / (double) GlobalService.RECORDS_PER_PAGE)));
+			// 將讀到的一頁資料放入request物件內，成為它的屬性物件
+			request.setAttribute("products_type", coll);
 		}else {
 			Collection<ProductBean> coll = service.getPageProds();
 			request.setAttribute("pageNo", pageNo);

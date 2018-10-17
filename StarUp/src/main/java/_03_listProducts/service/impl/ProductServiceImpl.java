@@ -103,4 +103,14 @@ public class ProductServiceImpl implements ProductService {
 		dao.setProdCategory(category);
 		
 	}
+
+	@Override
+	public void setProdType(String prodType) {
+		dao.setProdType(prodType);
+	}
+
+	@Override
+	public List<ProductBean> getTypeProds() {
+		return dao.getTypeProds();
+	}
 }

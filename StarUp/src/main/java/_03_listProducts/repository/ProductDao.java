@@ -56,4 +56,8 @@ public interface ProductDao {
 
 	void setProdCategory(String category);
 
+	void setProdType(String prodType);
+
+	List<ProductBean> getTypeProds();
+
 }
