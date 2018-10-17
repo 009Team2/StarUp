@@ -49,7 +49,7 @@
 								class="dropdown-item" href="#">文字作品</a> <a class="dropdown-item"
 								href="#">影音作品</a>
 						</div></li>															
-					<li class="nav-item"><a class="nav-link" href="#">企劃招募</a></li>
+					<li class="nav-item disabled"><a class="nav-link" href="#">企劃招募</a></li>
 					<li class="nav-item"><a class="nav-link" href="<c:url value='/_03_listProducts/DisplayPageProducts'/>">商城</a></li>
 					<c:if test="${!empty LoginOK}">
 						<li class="nav-item"><a class="nav-link" href="<c:url value=' #'/> "onclick="document.getElementById('id02').style.display='block'"><i class="fas fa-shopping-cart fa-lg" style="color:#e0e0e0;"></i></a></li>

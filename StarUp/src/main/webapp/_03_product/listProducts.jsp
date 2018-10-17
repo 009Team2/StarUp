@@ -31,7 +31,7 @@
             <!-- 側邊欄 -->
             <div class="section col-lg-2" style="width:100px; padding: 20px 0px;">
                 <nav class="nav flex-column nav-tabs">
-                    <a class="nav-link active">分類商品</a>
+                    <a class="nav-link active" href="<c:url value='/_03_listProducts/DisplayPageProducts'/>">分類商品</a>
                     <a class="nav-link" href="<c:url value='/_03_listProducts/DisplayPageProducts?prod_type=文創周邊'/>" style="color:#dfc2ef; font-weight:400;">文創周邊</a>
                     		
                     			<a class="dropdown-item" href="<c:url value='/_03_listProducts/DisplayPageProducts?page=1&category=暖心'/>">暖心小物</a>
@@ -57,7 +57,7 @@
                                </nav>
             </div>
             <!-- 商品列表 -->
-            <div class="container col-lg-10" style=" display: flex; justify-content: space-around; flex-wrap: wrap;">
+            <div class="container col-lg-10" style=" display: flex; justify-content: space-between; flex-wrap: wrap;">
             <!-- -------------------------------------------------------------- -->
   			   <c:forEach varStatus="stVar"  var="ProductBean"  items="${products_DPP}" >
                 <div class="box" style="background-color:rgba(255, 255, 255, 0.5); height: 390px; width: 300px; padding: 10px 25px; border-radius: 5px; box-shadow: 3px 3px 3px rgb(2, 14, 53); margin: 20px 0px;">
@@ -103,24 +103,14 @@
                 <!-- 頁數 -->
                 <div style="display: flex; width: 100%; justify-content: center; ">
                         <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#">&laquo;</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="<c:url value='DisplayPageProducts?pageNo=1' />">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="<c:url value='DisplayPageProducts?pageNo=2' />">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="<c:url value='DisplayPageProducts?pageNo=3' />">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="<c:url value='DisplayPageProducts?pageNo=4' />">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="<c:url value='DisplayPageProducts?pageNo=5' />">5</a>
-                        </li>
+                      		<li class="page-item">
+                           			 <a class="page-link" href="#">&laquo;</a>
+                       		 </li>
+                      	<c:forEach var="i" begin="1" end="${totalPages}" step="1">
+	                         <li class="page-item">
+	                          		  <a class="page-link" href="<c:url value='DisplayPageProducts?pageNo=${i}' />">${i}</a>
+	                         </li>
+                      	</c:forEach>
                         <li class="page-item">
                             <a class="page-link" href="#">&raquo;</a>
                         </li>
