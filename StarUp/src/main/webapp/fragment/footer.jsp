@@ -6,8 +6,8 @@
 		<div style="height:50px;">
         <footer class="page-footer font-small"  style="background-color:rgba(51, 51, 51, 0.9);">
        <!-- Copyright -->
-           <div class="footer-copyright text-center py-3">
-           		<a>使用規範 ｜</a><a>意見回饋 ｜</a><a>關於我們 ｜</a>
+           <div class="footer-copyright text-center py-3 text-info">
+           		<a>使用規範 ｜</a><a class="text-info" href=" <c:url value='/_09_opinion/opinion.jsp'/>" style="text-decoration:none;">意見回饋 ｜</a><a>關於我們 ｜</a>
            		© 2018 Copyright :  NTUT JAVA009 Team2
            </div>
        <!-- Copyright -->
