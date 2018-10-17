@@ -44,7 +44,7 @@ public class RetrievePageProducts extends HttpServlet {
 		// 如果session物件不存在
 				if (session == null) {
 					// 請使用者登入
-					response.sendRedirect(response.encodeRedirectURL("../_02_login/loginError.jsp"));
+					response.sendRedirect(response.encodeRedirectURL("../_03_login/loginError.jsp"));
 					return;
 				}
 				// 登入成功後，Session範圍內才會有LoginOK對應的MemberBean物件
@@ -55,6 +55,7 @@ public class RetrievePageProducts extends HttpServlet {
 
 		// 讀取瀏覽送來的 pageNo
 		String pageNoStr = request.getParameter("pageNo");
+		String category = request.getParameter("category");
 		// 如果讀不到，直接點選主功能表的『購物』就不會送 pageNo給後端伺服器
 		if (pageNoStr == null) {  
 			pageNo = 1;
@@ -89,13 +90,23 @@ public class RetrievePageProducts extends HttpServlet {
 		//
 		// 讀取一頁的書籍資料之前，告訴service，現在要讀哪一頁
 		service.setPageNo(pageNo);
+		service.setProdCategory(category);
 		request.setAttribute("prodBean", service);
 		// service.getPageBooks()方法開始讀取一頁的書籍資料
-		Collection<ProductBean> coll = service.getPageProds();
-		request.setAttribute("pageNo", pageNo);
-		request.setAttribute("totalPages", service.getTotalPages());
-		// 將讀到的一頁資料放入request物件內，成為它的屬性物件
-		request.setAttribute("products_DPP", coll);
+		if(category != null) {
+			Collection<ProductBean> coll = service.getCategoryProds();
+			System.out.println(coll);
+			request.setAttribute("pageNo", pageNo);
+			request.setAttribute("totalPages", (int) (Math.ceil(coll.size() / (double) GlobalService.RECORDS_PER_PAGE)));
+			// 將讀到的一頁資料放入request物件內，成為它的屬性物件
+			request.setAttribute("products_cate", coll);
+		}else {
+			Collection<ProductBean> coll = service.getPageProds();
+			request.setAttribute("pageNo", pageNo);
+			request.setAttribute("totalPages", service.getTotalPages());
+			// 將讀到的一頁資料放入request物件內，成為它的屬性物件
+			request.setAttribute("products_DPP", coll);
+		}
 											   
 		// 使用Cookie來儲存目前讀取的網頁編號，Cookie的名稱為memberId + "pageNo"
 		// -----------------------

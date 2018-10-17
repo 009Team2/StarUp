@@ -52,6 +52,8 @@ public interface ProductDao {
 
 	int updateProd(ProductBean bean);
 
-	List<ProductBean> getCategoryProds(String category);
+	List<ProductBean> getCategoryProds();
+
+	void setProdCategory(String category);
 
 }

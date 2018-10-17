@@ -32,16 +32,16 @@
             <div class="section col-lg-2" style="width:100px; padding: 20px 0px;">
                 <nav class="nav flex-column nav-tabs">
                     <a class="nav-link active">分類商品</a>
-                    <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">文創周邊小物</a>
-                    <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">原創桌遊</a>
+                    <a class="nav-link" href="<c:url value='/_03_listProducts/DisplayPageProducts?prod_type=文創周邊'/>" style="color:#dfc2ef; font-weight:400;">文創周邊小物</a>
+                    <a class="nav-link" href="<c:url value='/_03_listProducts/DisplayPageProducts?prod_type=原創桌遊'/>" style="color:#dfc2ef; font-weight:400;">原創桌遊</a>
                 </nav>
                 <nav class="nav flex-column nav-tabs">
                         <a class="nav-link active">人氣商品推薦</a>
                         <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">每週新品</a>
                         <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">熱銷推薦</a>
-                        <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">暖心小物</a>
-                        <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">城市紋理</a>
-                        <a class="nav-link" href="#" style="color:#dfc2ef; font-weight:400;">質感選物</a>
+                        <a class="nav-link" href="<c:url value='/_03_listProducts/DisplayPageProducts?page=1&category=暖心'/>" style="color:#dfc2ef; font-weight:400;">暖心小物</a>
+                        <a class="nav-link" href="<c:url value='/_03_listProducts/DisplayPageProducts?page=1&category=城市'/>" style="color:#dfc2ef; font-weight:400;">城市紋理</a>
+                        <a class="nav-link" href="<c:url value='/_03_listProducts/DisplayPageProducts?page=1&category=質感'/>" style="color:#dfc2ef; font-weight:400;">質感選物</a>
                 </nav>
                 <nav class="nav flex-column nav-tabs">
                         <a class="nav-link active">購物專區</a>
@@ -62,12 +62,21 @@
                             <p class="intro" style="margin:0px; font-weight: 400; font-size: 14px;">${ProductBean.prodIntro}</p>
                            <p style="font-size: 20px; padding-left: 180px ;padding-top:10px;color: rgb(34, 9, 68)">$ ${ProductBean.prodPrice} <span style="font-size:20px; align-items: right;color:rgb(44, 48, 86)"><i class="fa fa-cart-plus"  aria-hidden="true"></i></span></p>
                         </div>
-                </div>
-                
-                
-                
-                
-                
+                </div>   
+               </c:forEach>
+               
+                <c:forEach varStatus="stVar"  var="prodCategory"  items="${products_cate}" >
+                <div class="box" style="background-color:rgba(255, 255, 255, 0.5); height: 390px; width: 300px; padding: 10px 25px; border-radius: 5px; box-shadow: 3px 3px 3px rgb(2, 14, 53); margin: 20px 0px;">
+                        <div class="imgFrame" style="height: 250px; width: 250px; overflow: hidden; display: flex; justify-content: center; margin: 5px 0px; box-shadow: 1px 1px 1px rgb(2, 14, 53);">
+                            <img src='${pageContext.servletContext.contextPath}/Util/getImage?id=${prodCategory.prod_id}&type=PRODUCT' style="width: 100%; height:100%;">
+                        </div> 
+                        <div class="textFrame" style="height: 100px; width: 300px;">
+                            <p class="prodName" style="margin:0px; font-weight: 600; font-size: 17px; ">${prodCategory.prodName}</p>
+                            <p class="company" style="margin:0px; font-weight: 100; ">By ${prodCategory.prodCompany} </p>
+                            <p class="intro" style="margin:0px; font-weight: 400; font-size: 14px;">${prodCategory.prodIntro}</p>
+                           <p style="font-size: 20px; padding-left: 180px ;padding-top:10px;color: rgb(34, 9, 68)">$ ${prodCategory.prodPrice} <span style="font-size:20px; align-items: right;color:rgb(44, 48, 86)"><i class="fa fa-cart-plus"  aria-hidden="true"></i></span></p>
+                        </div>
+                </div>   
                </c:forEach>
          
                 <!-- 頁數 -->

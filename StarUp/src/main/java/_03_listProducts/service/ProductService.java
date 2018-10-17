@@ -17,7 +17,7 @@ public interface ProductService {
 
 	int getRecordsPerPage();
 	
-	List<ProductBean> getCategoryProds(String category);
+	List<ProductBean> getCategoryProds();
 
 	void setRecordsPerPage(int recordsPerPage);
 
@@ -43,4 +43,6 @@ public interface ProductService {
 	
 	// 取出所有的類型
 	List<String> getProdType();
+
+	void setProdCategory(String category);
 }

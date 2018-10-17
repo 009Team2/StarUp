@@ -3,25 +3,18 @@ package _00_init;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Blob;
-import java.sql.Clob;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import _00_init.util.GlobalService;
 import _00_init.util.HibernateUtil;
 import _00_init.util.SystemUtils2018;
-import _01_register.model.UserBean;
 import _03_listProducts.model.ProductBean;
-import _03_listProducts.model.OrderItem;
 
 public class InsertProductMySQL {
 	public static final String UTF8_BOM = "\uFEFF"; // 定義 UTF-8的BOM字元
@@ -50,6 +43,8 @@ public class InsertProductMySQL {
 					}
 					String[] token = line.split("\\|");
 					ProductBean p = new ProductBean();
+					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+					String date = df.format(new Date());// new Date()为获取当前系统时间
 					p.setProdName(token[0]);
 					p.setProdType(token[1]);
 					// 讀取圖片檔
@@ -60,6 +55,8 @@ public class InsertProductMySQL {
 					p.setProdPrice(Integer.parseInt(token[5].trim()));
 					p.setProdCompany(token[6]);
 					p.setProdIntro(token[7]);
+					p.setProdCategory(token[8]);
+					p.setProdUpDate(date);
 					session.save(p);
 					n++;
 					System.out.println("新增一筆Product紀錄是否成功=" + n);

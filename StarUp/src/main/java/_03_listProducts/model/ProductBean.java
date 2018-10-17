@@ -3,6 +3,7 @@ package _03_listProducts.model;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,14 +25,14 @@ public class ProductBean implements Serializable {
 	private Integer prodPrice;
 	private String prodCompany;
 	private String prodIntro;
-	private Date productUpDate;
-	private Date productOutDate;
+	private String prodUpDate;
+	private String prodOutDate;
 	private String prodCategory;
 	private Integer prodRate;
 
 	public ProductBean(Integer prod_id, String prodName, String prodType, Blob prodImg, String prodImgName,
-			Integer prodStock, Integer prodPrice, String prodCompany, String prodIntro, Date productUpDate,
-			Date productOutDate, String prodCategory, Integer prodRate) {
+			Integer prodStock, Integer prodPrice, String prodCompany, String prodIntro, String prodUpDate,
+			String prodOutDate, String prodCategory, Integer prodRate) {
 		super();
 		this.prod_id = prod_id;
 		this.prodName = prodName;
@@ -42,8 +43,8 @@ public class ProductBean implements Serializable {
 		this.prodPrice = prodPrice;
 		this.prodCompany = prodCompany;
 		this.prodIntro = prodIntro;
-		this.productUpDate = productUpDate;
-		this.productOutDate = productOutDate;
+		this.prodUpDate = prodUpDate;
+		this.prodOutDate = prodOutDate;
 		this.prodCategory = prodCategory;
 		this.prodRate = prodRate;
 	}
@@ -110,20 +111,20 @@ public class ProductBean implements Serializable {
 		this.prodIntro = prodIntro;
 	}
 
-	public Date getProductUpDate() {
-		return productUpDate;
+	public String getProdUpDate() {
+		return prodUpDate;
 	}
 
-	public void setProductUpDate(Date productUpDate) {
-		this.productUpDate = productUpDate;
+	public void setProdUpDate(String date) {
+		this.prodUpDate = date;
 	}
 
-	public Date getProductOutDate() {
-		return productOutDate;
+	public String getProdOutDate() {
+		return prodOutDate;
 	}
 
-	public void setProductOutDate(Date productOutDate) {
-		this.productOutDate = productOutDate;
+	public void setProdOutDate(String productOutDate) {
+		this.prodOutDate = prodOutDate;
 	}
 
 	public static long getSerialversionuid() {

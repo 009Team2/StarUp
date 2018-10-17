@@ -19,8 +19,9 @@ import _03_listProducts.repository.ProductDao;
 		private static final long serialVersionUID = 1L;
 		private int prod_id = 0; 	// 查詢單筆商品會用到此代號
 		private int pageNo = 0;		// 存放目前顯示之頁面的編號
-		private int recordsPerPage = GlobalService.RECORDS_PER_PAGE; // 預設值：每頁三筆
+		private int recordsPerPage = GlobalService.RECORDS_PER_PAGE; // 預設值：每頁10筆
 		private int totalPages = -1;
+		private String prodCategory;
 		
 		@Autowired
 		SessionFactory factory;
@@ -49,7 +50,7 @@ import _03_listProducts.repository.ProductDao;
 //			int endRecordNo = (pageNo) * recordsPerPage;
 
 			Session session = factory.getCurrentSession();
-			String hql = "FROM ProductBean ";
+			String hql = "FROM ProductBean";
 			
 			list = session.createQuery(hql)
 						 .setFirstResult(startRecordNo)
@@ -125,7 +126,7 @@ import _03_listProducts.repository.ProductDao;
 					.setParameter("prodPrice", bean.getProdPrice())
 					.setParameter("prodCompany", bean.getProdCompany())
 					.setParameter("prodIntro", bean.getProdIntro())
-					.setParameter("productUpDate", bean.getProductUpDate())
+					.setParameter("productUpDate", bean.getProdUpDate())
 //					.setParameter("productOutDate", bean.getProductOutDate())
 					.executeUpdate();
 		
@@ -151,7 +152,7 @@ import _03_listProducts.repository.ProductDao;
 					.setParameter("prodPrice", bean.getProdPrice())
 					.setParameter("prodCompany", bean.getProdCompany())
 					.setParameter("prodIntro", bean.getProdIntro())
-					.setParameter("productUpDate", bean.getProductUpDate())
+					.setParameter("productUpDate", bean.getProdUpDate())
 //					.setParameter("productOutDate", bean.getProductOutDate())
 					.executeUpdate();
 
@@ -161,10 +162,10 @@ import _03_listProducts.repository.ProductDao;
 
 		// 依prod_Id來查詢單筆記錄
 		@Override
-		public ProductBean queryProd(int prod_Id)  {
+		public ProductBean queryProd(int prod_id)  {
 			ProductBean bean = null;
 			Session session = factory.getCurrentSession();
-			bean = session.get(ProductBean.class, prod_Id);
+			bean = session.get(ProductBean.class, prod_id);
 			return bean;
 		}
 
@@ -229,12 +230,20 @@ import _03_listProducts.repository.ProductDao;
 			this.tagName = tagName;
 		}
 		@SuppressWarnings("unchecked")
-		public List<ProductBean> getCategoryProds(String category){
+		public List<ProductBean> getCategoryProds(){
 			List<ProductBean> list = null;
-			String hql = "SELECT FROM ProductBean WHERE prodCategory = :category";
+			System.out.println("開始查詢分類商品"+prodCategory);
+			String hql = "FROM ProductBean p WHERE p.prodCategory = :category";
 			Session session = factory.getCurrentSession();
-			list = session.createQuery(hql).getResultList();
+			list = session.createQuery(hql).setParameter("category",prodCategory).getResultList();
+			System.out.println(list);
 			return list;
+		}
+
+		@Override
+		public void setProdCategory(String prodCategory) {
+			this.prodCategory = prodCategory;
+			
 		}
 
 	}
