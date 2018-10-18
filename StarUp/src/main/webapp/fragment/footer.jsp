@@ -16,8 +16,18 @@
        </div>    
        <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>          
        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-   	   <script src="./js/action.js"></script>
-   	   <script src="./js/action.js"></script>
+   	   <script src="/StarUp/js/pagination.min.js"></script>
+   	   <script>
+		   	$('#product').pagination({
+		   	    dataSource: [1, 2, 3, 4, 5, 6, 7, ... , 195],
+		   	    callback: function(data, pagination) {
+		   	        // template method of yourself
+		   	        var html = template(data);
+		   	        dataContainer.html(html);
+		   	    }
+		   	})
+   	   </script>
+
    	   
    </body>
 </html>
